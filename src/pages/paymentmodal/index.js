@@ -2,7 +2,7 @@ import './modal.css';
 import { useDispatch, useSelector } from "react-redux";
 import { CloseButton } from 'react-bootstrap';
 import * as Actions from "../../store/actions";
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+// import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 const PaymentModal = () => {
 
@@ -57,9 +57,9 @@ const PaymentModal = () => {
                     <button className='btn btn-app-dark-gray py-2 position-relative'  style={{minHeight: "3rem", minWidth: "6rem", margin: "10px"}} onClick={handlePaypal}>Paypal</button>
                     <button className='btn btn-app-dark-gray py-2 position-relative'  style={{minHeight: "3rem", minWidth: "6rem", margin: "10px"}} onClick={handleCoinbase}>Coinbase</button>
                 </div>
-                <PayPalScriptProvider options={{ "client-id": "Af0Nf7eoh0BP5aTWkogs2R4R3t5GzIImmVx8bypvuvnWQkIeAbhxyOyuV-E7_Exg03k7Qf4HEqEYBR6c" }}>
+                {/* <PayPalScriptProvider options={{ "client-id": "Af0Nf7eoh0BP5aTWkogs2R4R3t5GzIImmVx8bypvuvnWQkIeAbhxyOyuV-E7_Exg03k7Qf4HEqEYBR6c" }}>
                     <PayPalButtons style={{ layout: "horizontal" }} />
-                </PayPalScriptProvider>
+                </PayPalScriptProvider> */}
                 
             </div>
         </div>
