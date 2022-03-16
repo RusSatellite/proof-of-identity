@@ -31,12 +31,10 @@ export default function App() {
     });
   }
 
-  // Using sandbox for testing only
-  let env = "sandbox";
   // Let's set our currency here
   let currency = "USD";
   // Testing total amount
-  let total = 10;
+  let total = 500;
 
   const client = {
     sandbox: "ASKubZJSMqA7_0E2HE3yRKIej3xO92wyK6j6PKSfyyDZljGO23sh_xnOyHH7wIYHR2nPSLZjTZiihw6B"
@@ -61,7 +59,6 @@ export default function App() {
         >
           <Text fontWeight="bold" margin={3}>€500.00 with Paypal</Text>
           <PaypalExpressBtn
-            env={env}
             client={client}
             currency={currency}
             total={total}
