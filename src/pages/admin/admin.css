@@ -1,0 +1,71 @@
+.search {
+    margin-top: 10px;
+}
+
+.dashboard {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar {
+    margin-top: 20px;
+    width: 13%;  
+    left: 0; 
+    background-color:rgba(224, 224, 224, 1); 
+    transition: .5s ease; 
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: block;
+    align-items: flex-start;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.navbar button {
+    width: 100%;
+    padding: 10px;
+    padding-left: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: transparent;
+    border-color:  transparent;
+    text-align: left;
+    font-size: 14px;
+}
+
+.navbar button:hover {
+    border-color: gray;
+}
+
+.navbar .active_button {
+    width: 100%;
+    padding: 10px;
+    padding-left: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: rgba(200, 200, 200, 1);
+    border-color:  transparent;
+    text-align: left;
+    font-size: 14px;
+}
+
+.tablebar {
+    width: 85%;  
+    right: 0; 
+    transition: .5s ease; 
+    padding-top: 20px; 
+}
+
+.editable {
+    text-align: right;
+    width: 15%;
+    background-color: transparent;
+    border-color: transparent;
+    border-bottom-color: black;
+}
+
+.editButton {
+    margin: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
