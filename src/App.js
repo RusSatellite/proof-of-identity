@@ -1,6 +1,6 @@
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
-function App() {
+export default function App() {
 
     return (
       <PayPalScriptProvider
@@ -16,7 +16,7 @@ function App() {
                   purchase_units: [
                       {
                           amount: {
-                              currency_code: "EUR",
+                              currency_code: "USD",
                               value: "500",
                           },
                       },
@@ -40,5 +40,3 @@ function App() {
   </PayPalScriptProvider>
     );
 }
-
-export default App;
