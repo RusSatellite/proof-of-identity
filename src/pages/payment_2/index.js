@@ -1,12 +1,10 @@
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useState } from "react";
+import axios from 'axios'
 
 const Payment2 = () => {
 
     const [show, setShow] = useState(false);
-    const [success, setSuccess] = useState(false);
-    const [ErrorMessage, setErrorMessage] = useState("");
-    const [orderID, setOrderID] = useState(false);
 
     const handlePaypal = async(e) => {
         e.preventDefault();
@@ -15,51 +13,15 @@ const Payment2 = () => {
 
     const handleCoinbase = async(e) => {
         e.preventDefault();
-        // const result = await coinbaseService({
-        //     amount: value,
-        // });
-        // if ("errors" in result) {
-        //     console.log(result.errors);
-        // } else {
-        //     window.location.href =  result.data.hosted_url;
-        // }
+        const price = { amount: '500' };
+        axios.post('https://humanincome.org/api/mainnet/coinbase/pay', price)
+        .then(res => {
+            if (res.data.success) {
+                window.open(res.data.data.hosted_url, "_parent");
+            }
+        });
     }
 
-     // creates a paypal order
-    const createOrder = (data, actions) => {
-        return actions.order
-        .create({
-            purchase_units: [
-            {
-                description: "Sunflower",
-                amount: {
-                currency_code: "EUR",
-                value: 500,
-                },
-            },
-            ],
-            // not needed if a shipping address is actually needed
-            application_context: {
-                shipping_preference: "NO_SHIPPING",
-            },
-        })
-        .then((orderID) => {
-            setOrderID(orderID);
-            return orderID;
-        });
-    };
-    
-    // check Approval
-    const onApprove = (data, actions) => {
-        return actions.order.capture().then(function (details) {
-        const { payer } = details;
-        setSuccess(true);
-        });
-    };
-    //capture likely error
-    const onError = (data, actions) => {
-        setErrorMessage("An Error occured with your payment ");
-    };
     return (
         <div>
             <div className="app-content-height d-flex flex-column align-items-center justify-content-center payment-modal-main">
@@ -70,11 +32,39 @@ const Payment2 = () => {
                 </div>
                 {
                     show && 
-                    <PayPalScriptProvider options={{ "client-id": "Af0Nf7eoh0BP5aTWkogs2R4R3t5GzIImmVx8bypvuvnWQkIeAbhxyOyuV-E7_Exg03k7Qf4HEqEYBR6c" }}>
+                    <PayPalScriptProvider
+                        options={{
+                            "client-id": "AV1hGBARJo3cQMMhODOuVhH1XMQSRlUCtE3ogDRfGskShI39eu1aJbjs63xd8U4PXH3dpLYBtBqluHf7",
+                        }}
+                    >
                         <PayPalButtons
-                        style={{ layout: "vertical" }}
-                            createOrder={createOrder}
-                            onApprove={onApprove}
+                            fundingSource='paypal'
+                            createOrder={(data, actions) => {
+                                return actions.order
+                                .create({
+                                    purchase_units: [
+                                        {
+                                            amount: {
+                                                currency_code: "EUR",
+                                                value: "500",
+                                            },
+                                        },
+                                    ],
+                                })
+                                .then((orderId) => {
+                                    // Your code here after create the order
+                                    console.log('data', data);
+                                    console.log('orderID', orderId);
+                                    return orderId;
+                                });
+                            }}
+                            onApprove={function (data, actions) {
+                                return actions.order
+                                .capture()
+                                .then(function () {
+                                    console.log('Approve Data', data);
+                                });
+                            }}
                         />
                     </PayPalScriptProvider>
                 }

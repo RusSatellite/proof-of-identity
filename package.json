@@ -7,7 +7,7 @@
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
     "@mui/material": "^5.5.1",
-    "@paypal/paypal-js": "^5.0.2",
+    "@paypal/paypal-js": "github:paypal/paypal-js",
     "@paypal/react-paypal-js": "^7.6.0",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.3",

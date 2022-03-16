@@ -1,11 +1,9 @@
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import PaypalExpressBtn from "react-paypal-express-checkout";
 import { useState } from "react";
+import axios from 'axios';
 
 const Payment1 = () => {
 
-    const [success, setSuccess] = useState(false);
-    const [ErrorMessage, setErrorMessage] = useState("");
-    const [orderID, setOrderID] = useState(false);
     const [show, setShow] = useState(false);
 
     const handlePaypal = async(e) => {
@@ -15,51 +13,41 @@ const Payment1 = () => {
 
     const handleCoinbase = async(e) => {
         e.preventDefault();
-        // const result = await coinbaseService({
-        //     amount: value,
-        // });
-        // if ("errors" in result) {
-        //     console.log(result.errors);
-        // } else {
-        //     window.location.href =  result.data.hosted_url;
-        // }
+        const price = { amount: '20' };
+        axios.post('https://humanincome.org/api/mainnet/coinbase/pay', price)
+        .then(res => {
+            if (res.data.success) {
+                window.open(res.data.data.hosted_url, "_parent");
+            }
+        });
     }
 
-     // creates a paypal order
-    const createOrder = (data, actions) => {
-        return actions.order
-        .create({
-            purchase_units: [
-            {
-                description: "Sunflower",
-                amount: {
-                    currency_code: "EUR",
-                    value: 20,
-                },
-            },
-            ],
-            // not needed if a shipping address is actually needed
-            application_context: {
-                shipping_preference: "NO_SHIPPING",
-            },
-        })
-        .then((orderID) => {
-            setOrderID(orderID);
-            return orderID;
-        });
+    const onSuccess = (payment) => {
+        // Congratulations, the payment was successful!
+        console.log("The payment was successful!", payment);
     };
-    
-    // check Approval
-    const onApprove = (data, actions) => {
-        return actions.order.capture().then(function (details) {
-        const { payer } = details;
-        setSuccess(true);
-        });
+
+    const onCancel = (data) => {
+        // User pressed 'cancel' or closed the PayPal popup window
+        console.log("The payment was cancelled!", data);
     };
-    //capture likely error
-    const onError = (data, actions) => {
-        setErrorMessage("An Error occured with your payment ");
+
+    const onError = (err) => {
+        // The main PayPal 's script can't be loaded
+        console.log("Error!", err);
     };
+
+    // Using sandbox for testing only
+    let env = "sandbox";
+    // Let's set our currency here
+    let currency = "EUR";
+    // Testing total amount
+    let total = 20;
+
+    const client = {
+        sandbox: "AV1hGBARJo3cQMMhODOuVhH1XMQSRlUCtE3ogDRfGskShI39eu1aJbjs63xd8U4PXH3dpLYBtBqluHf7"
+    };
+
     return (
         <div>
             <div className="app-content-height d-flex flex-column align-items-center justify-content-center payment-modal-main">
@@ -70,13 +58,16 @@ const Payment1 = () => {
                 </div>
                 {
                     show && 
-                    <PayPalScriptProvider options={{ "client-id": "Af0Nf7eoh0BP5aTWkogs2R4R3t5GzIImmVx8bypvuvnWQkIeAbhxyOyuV-E7_Exg03k7Qf4HEqEYBR6c" }}>
-                        <PayPalButtons
-                        style={{ layout: "vertical" }}
-                            createOrder={createOrder}
-                            onApprove={onApprove}
-                        />
-                    </PayPalScriptProvider>
+                    <PaypalExpressBtn
+                        env={env}
+                        client={client}
+                        currency={currency}
+                        total={total}
+                        onError={onError}
+                        onSuccess={onSuccess}
+                        onCancel={onCancel}
+                        style={{ shape: "rect", size: "medium", margin: "1.5rem" }}
+                    />
                 }
             </div>
         </div>
