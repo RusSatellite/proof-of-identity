@@ -1,8 +1,3 @@
-@font-face {
-  font-family: "Open Sans";
-  src: local("Open Sans"), url(./assets/fonts/OpenSans-Italic-VariableFont_wdth\,wght.ttf) format("truetype");
-}
-
 :root {
   --app-primary: rgba(182, 202, 213);
   --app-primary-text: #ffffff;
@@ -32,16 +27,16 @@
 html {
   font-size: calc(60% + 0.8vmin);
   overflow: auto;
+  font-family: "Open Sans" !important;
 }
 
 body {
-  /* font-family: 'Open Sans' !important; */
   color: inherit;
-  font-family: inherit;
   font-size: inherit;
   font-style: inherit;
   font-weight: inherit;
   letter-spacing: inherit;
+  font-family: "Open Sans" !important;
 }
 
 /* for not reloading error */
@@ -49,6 +44,11 @@ iframe {
   display: none;
 }
 .tox-edit-area iframe{
+  display: block;
+}
+
+.coinbase {
+  min-width: 100px;
   display: block;
 }
 
@@ -694,8 +694,9 @@ fieldset[disabled] .btn-app-primary.focus {
   font-weight: 700!important;
   line-height: 1.2!important;
   letter-spacing: -1px!important;
-  font-style: normal!important;
-  font-size: 28px!important;
+  font-style: bold!important;
+  font-size: 20px!important;
+  align-items: center!important;
 }
 .proof-identify-normal {
   color: #4a4e57!important;

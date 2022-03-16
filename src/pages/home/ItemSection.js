@@ -2,7 +2,6 @@ import React from "react";
 
 import './itemSection.css'
 export default function ItemSection(props) {
-    console.log(props)
     return (
         <div className="border-image1 position-relative m-4 spinner">
             <div className="spinner-item"></div>

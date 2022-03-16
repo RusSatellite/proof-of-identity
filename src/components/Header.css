@@ -1,8 +1,16 @@
 .Header {
     height: 124px;
-    display: grid;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     grid-template-areas: "logo nav";
-  }
+    position: sticky;
+    top: 0;
+    padding-left:  100px;
+    padding-right:  100px;
+    background-color: #ffffff;
+    z-index: 1111;
+}
   
   .Logo {
     grid-area: logo;
@@ -31,19 +39,11 @@
     outline: none;
     border: none;
     font-size: 14px;
-    color: #fff;
     font-weight: 700;
-    background-color: rgba(182, 202, 213);
+    background: inherit;
     border-radius: 5px;
     cursor: pointer;
     transition: 70ms;
-  }
-  .Nav button:hover{
-    background-color: rgb(190, 212, 224);
-  }
-  .Nav button:active {
-    transform: translateY(3px);
-    box-shadow: 0px 2px 0px 0px rgba(255, 0, 0, 0.25);
   }
   
   .Burger {
@@ -70,9 +70,6 @@
       display: grid;
       grid-area: nav;
       flex-direction: column!important;
-    /* grid-template-columns: repeat(2, auto);
-    align-items: center;
-    justify-items: right; */
       grid-template-rows: repeat(2, auto);
       grid-template-columns: none;
       grid-row-gap: 20px;

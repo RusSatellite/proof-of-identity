@@ -10,13 +10,26 @@
 .modal-main {
     position:fixed;
     background: white;
-    width: 80%;
-    top:50%;
+    width: 50%;
+    top:10%;
     left:50%;
+    overflow-y: auto;
     transform: translate(-50%,-50%);
     animation-name: animateModal;
     animation-duration: 0.3s;
     animation-timing-function: ease-out;
+}
+
+.modal-main .center {
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+}
+
+.right {
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 .display-block {
@@ -32,6 +45,6 @@
         top: -50%;
     }
     100% {
-        top: 50%;
+        top: 10%;
     }
 }

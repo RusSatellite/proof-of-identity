@@ -1,6 +1,5 @@
 import React from 'react';
-import { BsDiscord } from "react-icons/bs";
-import { FaAngleRight, FaRegEnvelopeOpen, FaLinkedinIn, FaTwitter, FaTelegramPlane, FaRegFileAlt, FaRegUserCircle, FaFileAlt } from "react-icons/fa";
+import { FaAngleRight, FaRegEnvelopeOpen, FaLinkedinIn, FaTwitter, FaTelegramPlane, FaRegFileAlt, FaRegUserCircle, FaFileAlt, FaDiscord } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -28,7 +27,7 @@ const Footer = () => {
                 <a target="_blank" rel="noreferrer" href="https://discord.gg/tna5288W" className="decoration-none">Telegram</a>
               </div>
               <div className="align-items-center d-flex gap-2 mt-2 align-content-center justify-content-center justify-content-md-start">
-                <BsDiscord />
+                <FaDiscord />
                 <a target="_blank" rel="noreferrer" href="https://discord.gg/tna5288W" className="decoration-none">Discord</a>
               </div>
             </div>
@@ -44,7 +43,7 @@ const Footer = () => {
               <span><FaAngleRight style={{marginRight: "15px"}}/><a target="_blank" rel="noreferrer" href="https://proof-of-identity.com/ico-human-income-coin" className="decoration-none">Our Team</a></span>
               <span><FaAngleRight style={{marginRight: "15px"}}/><a target="_blank" rel="noreferrer" href="https://proof-of-identity.com/ico-human-income-coin" className="decoration-none">ICO - Presentation page</a></span>
               <span><FaAngleRight style={{marginRight: "15px"}}/><a target="_blank" rel="noreferrer" href="https://proof-of-identity.com/pre-ico" className="decoration-none">Pre-ICO</a></span>
-              <span><FaAngleRight style={{marginRight: "15px"}}/><a target="_blank" rel="noreferrer" target="_blank" rel="noreferrer" target="_blank" rel="noreferrer" href="https://proof-of-identity.com/bounty-program" className="decoration-none">Bounty program</a></span>
+              <span><FaAngleRight style={{marginRight: "15px"}}/><a target="_blank" rel="noreferrer" href="https://proof-of-identity.com/bounty-program" className="decoration-none">Bounty program</a></span>
             </div>
           </div>
           <div className="m-4 text-center" style={{color: "#8e8e8e"}}><p>© 2021 Proof of Identity | All Rights Reserved.</p>

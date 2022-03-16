@@ -1,11 +1,31 @@
 import React from 'react';
-
+import { useDispatch } from "react-redux";
+import * as Actions from "../../store/actions"
 import image from '../../assets/logo2.png'
 
 const Footer = () => {
+  const dispatch = useDispatch();
+  const handleShopplan1 = (e) => {
+    e.preventDefault();
+    window.open("/mainnet/profile", "_parent");
+  }
+
+  const handleShopplan2 = (e) => {
+    e.preventDefault();
+    dispatch(Actions.hide_shopplan_modal());
+    dispatch(Actions.show_payment_modal(20));
+    window.open("/mainnet/payment1", "_parent");
+  }
+
+  const handleShopplan3 = (e) => {
+    e.preventDefault();
+    dispatch(Actions.hide_shopplan_modal());
+    dispatch(Actions.show_payment_modal(500));
+    window.open("/mainnet/payment2", "_parent");
+  }
   return (
     <div className='container mt-4'>
-      <h1 className='proof-identify-bold'>Join the Proof of Identity network and start minting the Global Income Coin</h1>
+      <h1 className='proof-identify-bold' style={{alignItems: 'center', textAlign: 'center'}}>Join the Proof of Identity network and start minting the Global Income Coin</h1>
       <div className=' list-scrollbar'>
         <table className='table fs-1p25 text-center'>
           <tbody>
@@ -59,9 +79,9 @@ const Footer = () => {
             </tr>
             <tr >
               <td className='border-0'></td>
-              <td className='border-0'><button className='btn btn-app-primary py-2' style={{minHeight: "4.1rem"}} onClick={() => window.open("/profile", "_parent")} >Join for free</button></td>
-              <td className='border-0'><button className='btn btn-app-dark-gray py-2 position-relative'  style={{minHeight: "4.1rem"}}><div className=''></div>Become a supporter</button></td>
-              <td className='border-0'><button className='btn btn-app-black py-2 position-relative' style={{minHeight: "4.1rem"}}><div className=''></div>Become a founder contributor</button></td>
+              <td className='border-0'><button className='btn btn-app-primary py-2' style={{minHeight: "4.1rem", minWidth: "13rem"}} onClick={handleShopplan1} >Join for free</button></td>
+              <td className='border-0'><button className='btn btn-app-dark-gray py-2 position-relative'  style={{minHeight: "4.1rem", minWidth: "13rem"}} onClick={handleShopplan2} ><div className=''></div>Become a supporter</button></td>
+              <td className='border-0'><button className='btn btn-app-black py-2 position-relative' style={{minHeight: "4.1rem", minWidth: "13rem"}} onClick={handleShopplan3} ><div className=''></div>Become a founder contributor</button></td>
             </tr>
           </tbody>
         </table>

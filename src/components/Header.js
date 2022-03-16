@@ -6,7 +6,6 @@ import { BsJustify } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import ShopPlanModal from "../pages/shopplanmodal";
-import PaymentModal from "../pages/paymentmodal";
 import * as Actions from "../store/actions"
 
 export default function Header() {
@@ -43,10 +42,9 @@ export default function Header() {
 
 
   return (
-    <header className="Header container align-items-center">
+    <header className="Header ">
       <ShopPlanModal />
-      <PaymentModal />
-      <Link to="/"><img src={require("../assets/logo.png")} className="Logo" alt="logo" /></Link>
+      <Link to="/mainnet/"><img src={require("../assets/logo.png")} className="Logo" alt="logo" /></Link>
       
       <CSSTransition
         in={!isSmallScreen || isNavVisible}
@@ -55,7 +53,9 @@ export default function Header() {
         unmountOnExit
       >
         <nav className="Nav justify-content-end d-flex align-items-center">
-          <Link to="/profile" >Login to your wallet</Link>
+          <Link to="/mainnet/shopplan" >Shop Plan</Link>
+          <Link to="/mainnet/admin" >Dash Board</Link>
+          <Link to="/mainnet/profile" >Login to your wallet</Link>
           <button type="button" onClick={showShopPlanModal}>Become a participant</button>
         </nav>
       </CSSTransition>
