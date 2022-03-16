@@ -35,13 +35,13 @@ const ShopPlanModal = () => {
     return (
         <div className={showHideClassName}>
             <section className="container mt-4 modal-main">
-                <div className='center'>
-                    <h1 className='proof-identify-bold center'>Become a participant as<CloseButton className='right' onClick={handleClose}/></h1>
+                <div style={{display: 'flex', justifyContent: "center"}}>
+                    <h1 className='proof-identify-bold center' style={{margin: "10px"}}>Become a participant as<CloseButton className='right' onClick={handleClose}/></h1>
                 </div>
                 <div className='center'>
-                    <button className='btn btn-app-primary py-2' style={{minHeight: "4rem", minWidth: "15rem"}} onClick={handleShopplan1}>Join for free</button>
-                    <button className='btn btn-app-dark-gray py-2 position-relative'  style={{minHeight: "4rem", minWidth: "15rem"}} onClick={handleShopplan2}>Become a supporter</button>
-                    <button className='btn btn-app-black py-2 position-relative' style={{minHeight: "4rem", minWidth: "15rem"}} onClick={handleShopplan3}>Become a founder contributor</button>
+                    <button className='btn btn-app-primary py-2' style={{minHeight: "4rem", minWidth: "15rem", margin: "10px"}} onClick={handleShopplan1}>Join for free</button>
+                    <button className='btn btn-app-dark-gray py-2 position-relative'  style={{minHeight: "4rem", minWidth: "15rem", margin: "10px"}} onClick={handleShopplan2}>Become a supporter</button>
+                    <button className='btn btn-app-black py-2 position-relative' style={{minHeight: "4rem", minWidth: "15rem", margin: "10px"}} onClick={handleShopplan3}>Become a founder contributor</button>
                 </div>
             </section>
         </div>
