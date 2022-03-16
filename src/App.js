@@ -2,7 +2,7 @@ import React from "react";
 
 import { ChakraProvider, Flex, Button, Text } from "@chakra-ui/react";
 import PaypalExpressBtn from "react-paypal-express-checkout";
-
+import axios from 'axios';
 
 export default function App() {
   const onSuccess = (payment) => {
@@ -22,7 +22,13 @@ export default function App() {
 
   const onCoinbase = (e) => {
     e.preventDefault();
-
+    const price = { amount: '500' };
+    axios.post('https://humanincome.org/api/mainnet/coinbase/pay', price)
+    .then(res => {
+        if (res.data.success) {
+            window.open(res.data.data.hosted_url, "_parent");
+        }
+    });
   }
 
   // Using sandbox for testing only
@@ -53,7 +59,7 @@ export default function App() {
           borderWidth="2px"
           borderRadius="lg"
         >
-          <Text fontWeight="bold" margin={3}>500 EUR with Paypal</Text>
+          <Text fontWeight="bold" margin={3}>€500.00 with Paypal</Text>
           <PaypalExpressBtn
             env={env}
             client={client}
@@ -75,7 +81,7 @@ export default function App() {
           borderWidth="2px"
           borderRadius="lg"
         >
-          <Text fontWeight="bold" margin={3}>500 EUR with Coinbase</Text>
+          <Text fontWeight="bold" margin={3}>€500.00 with Coinbase</Text>
           <Button
             style={{
               backgroundColor: "#ffc439",
@@ -84,6 +90,7 @@ export default function App() {
               borderRadius: "3px",
               height: "35px"
             }}
+            onClick={onCoinbase}
           >
             Coinbase Checkout
           </Button>
