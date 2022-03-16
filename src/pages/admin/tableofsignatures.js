@@ -31,10 +31,17 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-
 export default function TableOfSignatures({filterValue}) {
   const [rows, setRows] = useState([]);
   const [filterRows, setFilterRows] = useState([]);
+    
+  const filter_data = (data) => {
+    if (data === null) {
+      return false;
+    }
+    return data.toString().toLowerCase().includes(filterValue.toLowerCase());
+  }
+
   useEffect(() => {
     axios.get('https://humanincome.org/api/mainnet/get-signatures')
     .then(res => {
@@ -53,10 +60,10 @@ export default function TableOfSignatures({filterValue}) {
       if (filterValue === '') {
         return true;
       } else {
-        return data.signature.toString().toLowerCase().includes(filterValue.toLowerCase()) || 
-          data.payment_id.toString().toLowerCase().includes(filterValue.toLowerCase()) || 
-          data.id_file.toString().toLowerCase().includes(filterValue.toLowerCase()) ||
-          data.associated_node.toString().toLowerCase().includes(filterValue.toLowerCase());
+        return filter_data(data.signature) || 
+        filter_data(data.payment_id) || 
+        filter_data(data.id_file) ||
+        filter_data(data.associated_node);
       }
     }))
   }, [filterValue, rows]);

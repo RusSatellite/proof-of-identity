@@ -31,9 +31,16 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
+
 export default function TableOfWallets({filterValue}) {
   const [rows, setRows] = useState([]);
   const [filterRows, setFilterRows] = useState([]);
+  const filter_data = (data) => {
+    if (data === null) {
+      return false;
+    }
+    return data.toString().toLowerCase().includes(filterValue.toLowerCase());
+  }
   useEffect(() => {
     axios.get('https://humanincome.org/api/mainnet/get-wallets')
     .then(res => {
@@ -52,12 +59,12 @@ export default function TableOfWallets({filterValue}) {
       if (filterValue === '') {
         return true;
       } else {
-        return data.id.toString().toLowerCase().includes(filterValue.toLowerCase()) || 
-          data.amount.toString().toLowerCase().includes(filterValue.toLowerCase()) || 
-          data.associated_node.toString().toLowerCase().includes(filterValue.toLowerCase()) ||
-          data.date_of_start.toString().toLowerCase().includes(filterValue.toLowerCase()) || 
-          data.signature.toString().toLowerCase().includes(filterValue.toLowerCase()) ||
-          data.id_file.toString().toLowerCase().includes(filterValue.toLowerCase());
+        return filter_data(data.id) || 
+            filter_data(data.amount) || 
+            filter_data(data.associated_node) ||
+            filter_data(data.date_of_start) || 
+            filter_data(data.signature) ||
+            filter_data(data.id_file);
       }
     }))
   }, [filterValue, rows]);

@@ -34,6 +34,14 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export default function TableOfOrders({filterValue}) {
   const [rows, setRows] = useState([]);
   const [filterRows, setFilterRows] = useState([]);
+    
+  const filter_data = (data) => {
+    if (data === null) {
+      return false;
+    }
+    return data.toString().toLowerCase().includes(filterValue.toLowerCase());
+  }
+
   useEffect(() => {
     axios.get('https://humanincome.org/api/mainnet/get-orders')
     .then(res => {
@@ -52,15 +60,15 @@ export default function TableOfOrders({filterValue}) {
       if (filterValue === '') {
         return true;
       } else {
-        return data.no.toString().toLowerCase().includes(filterValue.toLowerCase()) || 
-          data.signature.toString().toLowerCase().includes(filterValue.toLowerCase()) || 
-          data.type.toString().toLowerCase().includes(filterValue.toLowerCase()) ||
-          data.date.toString().toLowerCase().includes(filterValue.toLowerCase()) ||
-          data.currency.toString().toLowerCase().includes(filterValue.toLowerCase()) ||
-          data.amount.toString().toLowerCase().includes(filterValue.toLowerCase()) ||
-          data.tx.toString().toLowerCase().includes(filterValue.toLowerCase()) ||
-          data.associated_nodes.toString().toLowerCase().includes(filterValue.toLowerCase()) ||
-          data.participation.toString().toLowerCase().includes(filterValue.toLowerCase());
+        return filter_data(data.no) || 
+            filter_data(data.signature) || 
+            filter_data(data.type) ||
+            filter_data(data.date) ||
+            filter_data(data.currency) ||
+            filter_data(data.amount) ||
+            filter_data(data.tx) ||
+            filter_data(data.associated_nodes) ||
+            filter_data(data.participation);
       }
     }))
   }, [filterValue, rows]);
